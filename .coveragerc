@@ -1,0 +1,5 @@
+[run]
+include = ssip_saugerties/*
+omit = *migrations*, *tests*
+plugins =
+    django_coverage_plugin

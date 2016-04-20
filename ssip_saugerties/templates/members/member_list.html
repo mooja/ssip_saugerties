@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %} Member List {% endblock %}
+
+{% block content %}
+{% comment %}
+<form role="form">
+        <hr>
+        <button type="button" class="btn btn-lg btn-default" onclick="location.href='{% url 'members:member-list-pdf'%}'">printable version</button>
+        <hr>
+</form>
+{% endcomment %}
+{% for member in member_list %}
+    <h3 class="media-heading name" id="{{ member.id }}">
+        {{ member.last_name }}, {{ member.first_name }}
+    </h3>
+
+    {% if member.address or member.town %}
+    <p class="address">{{ member.address }}
+    {% if member.town %}, {{ member.town }} NY {% if member.zipcode %} {{ member.zipcode }} {% endif %} {% endif %}
+    </p>
+    {% endif %}
+
+    {% if member.homephone %}
+    <p class="homephone">(home) {{ member.homephone }}</p>
+    {% endif %}
+
+    {% if member.cellphone %}
+    <p class="cellphone">(cell) {{ member.cellphone }}</p>
+    {% endif %}
+
+    {% if member.email %}
+    <p class="email"><a href="mailto:{{ member.email }}">{{ member.email }}</a></p>
+    {% endif %}
+
+    {% if member.birthday %}
+    <p> <strong>Birthday Month: </strong> {{ member.birthday }} </p>
+    {% endif %}
+
+    {% if member.occupation %}
+    <p> <strong>Occupation: </strong> {{ member.occupation }} </p>
+    {% endif %}
+
+    {% if member.hobbies %}
+    <p class="hobbies"><strong>My Hobbies</strong>: {{ member.hobbies }}</p>
+    {% endif %}
+
+    {% if member.canhelp %}
+    <p class="canhelp"><strong>I can help with</strong>: {{ member.canhelp }}</p>
+    {% endif %}
+
+    {% if member.needhelp %}
+    <p class="needhelp"><strong>I could use help with</strong>: {{ member.needhelp }}</p>
+    {% endif %}
+
+    {% if member.comments %}
+    <p class="needhelp"><strong>Comments</strong>: {{ member.comments }}</p>
+    {% endif %}
+<hr>
+{% endfor %}
+{% endblock content %}
