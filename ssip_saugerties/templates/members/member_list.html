@@ -3,16 +3,15 @@
 {% block title %} Member List {% endblock %}
 
 {% block content %}
-{% comment %}
-<form role="form">
-        <hr>
-        <button type="button" class="btn btn-lg btn-default" onclick="location.href='{% url 'members:member-list-pdf'%}'">printable version</button>
-        <hr>
-</form>
-{% endcomment %}
 <div class="row">
-    <div class="col-md-5">
-        {% for member in member_list %}
+    <div style="height:3em;"></div>
+<style>
+.card {
+    margin-bottom: 3em;
+}
+</style>
+    <div class="card-columns">
+    {% for member in member_list %}
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title" id="{{ member.id }}">

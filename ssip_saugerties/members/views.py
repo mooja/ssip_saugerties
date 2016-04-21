@@ -32,13 +32,15 @@ def build_frames(pwidth, pheight, ncols):
         f = Frame(x1=(i*((pwidth-30) / ncols)+15),
                   y1=0,
                   width=((pwidth-30) / ncols),
-                  height=pheight,
+                  height=pheight+2,
                   leftPadding=15,
                   rightPadding=15,
                   topPadding=15,
                   bottomPadding=15,
                   showBoundary=True)
         frames.append(f)
+    frames[0].showBoundary=False
+    frames[3].showBoundary=False
     return frames
 
 
@@ -120,7 +122,6 @@ Email: {{ member.email }}
 
 {% if member.comments %}
 <strong>Comments</strong>: {{ member.comments }}
-<br/>
 {% endif %}
 """)
 
@@ -129,7 +130,7 @@ Email: {{ member.email }}
         context = Context({"member": member})
         p = Paragraph(template.render(context), styles["Normal"])
         content.append(p)
-        content.append(Spacer(1, 0.3*inch))
+        content.append(Spacer(1, 0.2*inch))
 
     doc.build(content)
 
