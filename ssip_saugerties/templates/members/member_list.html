@@ -10,52 +10,79 @@
         <hr>
 </form>
 {% endcomment %}
-{% for member in member_list %}
-    <h3 class="media-heading name" id="{{ member.id }}">
-        {{ member.last_name }}, {{ member.first_name }}
-    </h3>
+<div class="row">
+    <div class="col-md-5">
+        {% for member in member_list %}
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title" id="{{ member.id }}">
+                    {{ member.last_name }}, {{ member.first_name }}
+                </h4>
+            </div>
+            <ul class="list-group list-group-flush">
+                {% if member.address or member.town %}
+                   <li class="list-group-item">
+                        {{ member.address }}
+                        {% if member.town %}, {{ member.town }} NY {% if member.zipcode %} {{ member.zipcode }} {% endif %} {% endif %}
+                   </li>
+                {% endif %}
 
-    {% if member.address or member.town %}
-    <p class="address">{{ member.address }}
-    {% if member.town %}, {{ member.town }} NY {% if member.zipcode %} {{ member.zipcode }} {% endif %} {% endif %}
-    </p>
-    {% endif %}
+                {% if member.homephone %}
+                   <li class="list-group-item">
+                        (home) {{ member.homephone }}
+                    </li>
+                {% endif %}
 
-    {% if member.homephone %}
-    <p class="homephone">(home) {{ member.homephone }}</p>
-    {% endif %}
+                {% if member.cellphone %}
+                   <li class="list-group-item">
+                        (cell) {{ member.cellphone }}
+                    </li>
+                {% endif %}
 
-    {% if member.cellphone %}
-    <p class="cellphone">(cell) {{ member.cellphone }}</p>
-    {% endif %}
+                {% if member.email %}
+                   <li class="list-group-item">
+                        <p class="email"><a href="mailto:{{ member.email }}">{{ member.email }}</a></p>
+                    </li>
+                {% endif %}
 
-    {% if member.email %}
-    <p class="email"><a href="mailto:{{ member.email }}">{{ member.email }}</a></p>
-    {% endif %}
+                {% if member.birthday %}
+                   <li class="list-group-item">
+                         <strong>Birthday Month: </strong> {{ member.birthday }} 
+                    </li>
+                {% endif %}
 
-    {% if member.birthday %}
-    <p> <strong>Birthday Month: </strong> {{ member.birthday }} </p>
-    {% endif %}
+                {% if member.occupation %}
+                    <li class="list-group-item">
+                         <strong>Occupation: </strong> {{ member.occupation }} 
+                    </li>
+                {% endif %}
 
-    {% if member.occupation %}
-    <p> <strong>Occupation: </strong> {{ member.occupation }} </p>
-    {% endif %}
+                {% if member.hobbies %}
+                    <li class="list-group-item">
+                        <p class="hobbies"><strong>My Hobbies</strong>: {{ member.hobbies }}</p>
+                    </li>
+                {% endif %}
 
-    {% if member.hobbies %}
-    <p class="hobbies"><strong>My Hobbies</strong>: {{ member.hobbies }}</p>
-    {% endif %}
+                {% if member.canhelp %}
+                    <li class="list-group-item">
+                        <p class="canhelp"><strong>I can help with</strong>: {{ member.canhelp }}</p>
+                    </li>
+                {% endif %}
 
-    {% if member.canhelp %}
-    <p class="canhelp"><strong>I can help with</strong>: {{ member.canhelp }}</p>
-    {% endif %}
+                {% if member.needhelp %}
+                    <li class="list-group-item">
+                        <p class="needhelp"><strong>I could use help with</strong>: {{ member.needhelp }}</p>
+                    </li>
+                {% endif %}
 
-    {% if member.needhelp %}
-    <p class="needhelp"><strong>I could use help with</strong>: {{ member.needhelp }}</p>
-    {% endif %}
-
-    {% if member.comments %}
-    <p class="needhelp"><strong>Comments</strong>: {{ member.comments }}</p>
-    {% endif %}
-<hr>
-{% endfor %}
+                {% if member.comments %}
+                <li class="list-group-item">
+                     <strong>Comments</strong>: {{ member.comments }}
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock content %}
