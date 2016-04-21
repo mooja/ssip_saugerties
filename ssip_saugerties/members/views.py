@@ -29,14 +29,14 @@ def member_list(request):
 def build_frames(pwidth, pheight, ncols):
     frames = []
     for i in range(ncols):
-        f = Frame(x1=i*(pwidth / ncols),
+        f = Frame(x1=(i*((pwidth-30) / ncols)+15),
                   y1=0,
-                  width=(pwidth / ncols),
+                  width=((pwidth-30) / ncols),
                   height=pheight,
-                  leftPadding=10,
-                  rightPadding=4,
-                  topPadding=2,
-                  bottomPadding=2,
+                  leftPadding=15,
+                  rightPadding=15,
+                  topPadding=15,
+                  bottomPadding=15,
                   showBoundary=True)
         frames.append(f)
     return frames
@@ -64,8 +64,8 @@ def member_list_pdf(request):
         topMargin=inch,
         bottomMargin=inch,
         allowSplitting=0,
-        title='SSIP209 Members Listing',
-        author='Max Shkurygin',
+        title='SSIP Members',
+        author='SSIP',
         _pageBreakQuick=1,
         encrypt=None)
 
